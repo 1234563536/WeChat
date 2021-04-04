@@ -1,0 +1,57 @@
+<view class="pyg_index">
+  <!-- 搜索框开始 -->
+  <Searchinput></Searchinput>
+  <!-- 搜索框结束 -->
+  <!-- 轮播图开始 -->
+  <view class="index_swiper">
+    <!-- 1 swiper标签存在默认的宽度和高度
+       100%宽度和150px的高度
+       2 图片标签也存在默认的宽度和高度
+       320px 240px
+       3设计图片和轮廓图 原图750 340px
+       让图片的高度自适应，宽度等于100%
+       4图片标签 
+       mode属性 渲染模式
+       widthFix 让图片的标签宽高和图片标签内容的宽高都等比例的发生变化
+        -->
+    <swiper autoplay="false" indicator-dots="false" circular="false" interval="3000" duration="500">
+      <!-- 一般会用到的轮廓图属性为
+  indicator-dots是否显示指示面板
+  indicator-color指示半的颜色
+  indicator-active-color选中的指示点颜色
+  interval自动切换时间间隔
+  duration滑动动画时长 -->
+      <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+        <navigator>
+          <image mode="widthFix" src="{{item.image_src}}">
+          </image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 轮播图结束 -->
+  <!-- 导航开始 -->
+  <view class="index_cate">
+    <navigator wx:for="{{catesList}}" wx:key="name">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </navigator>
+  </view>
+  <!-- 导航结束 -->
+  <!-- 楼层开始 -->
+  <view class="index_floor">
+    <view class="floor_group" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="floor_title">
+      <!-- 标题 -->
+      <view class="floor_title">
+        <image mode="widthFix" src="{{item1.floor_title.image_src}}">
+        </image>
+      </view>
+      <!-- 内容 -->
+      <view class="floor_list">
+        <navigator wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="name">
+          <image mode="{{index2===0?'widthFix':'scaleToFill'}}" src="{{item2.image_src}}"></image>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <!-- 楼层结束 -->
+</view>
